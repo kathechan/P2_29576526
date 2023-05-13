@@ -1,7 +1,6 @@
 const express = require('express');
-const logicaDB = require('./logicaDB');
 const router = express.Router();
-const db = require('/database.db');
+const logicaDB = require('./logicaDB');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
