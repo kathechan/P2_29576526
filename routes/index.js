@@ -1,41 +1,33 @@
 var express = require('express');
-const router = express.Router();
-const sqlite3 = require("sqlite3").verbose();
+var router = express.Router();
+const logicaDB = require('./logicaDB');
 
-let db = new sqlite3.Database(__dirname + "/database.db", (err) => {
-	if (err) {
-		return console.error(err.message);
-	}
-console.log("Connected to the Sqlite database.");
-
-db.run(
-	"CREATE TABLE IF NOT EXISTS contactos(email VARCHAR(20),nombre VARCHAR(20), comentario TEXT,fecha DATATIME,ip TEXT);"
-);
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  let name = 'Katherine Perez'
+  res.render('index', {
+    title: 'P2_29576526',
+    name: name,
+  });
 });
 
-module.exports - {
-	insert: function (name, email, comment, date, ip) {
-	db.run(
-		"INSERT INTO contactos (name, email, comment, date, ip)	VALUES (?, ?, ?, ?, ?)",
-		[name, email, comment, date, ip],
-		function (err) { 
-			if (err) {
-				return console.log(err.message);
-			}
-			// get the last insert id
-			console.log ('A row has been inserted with rowid ${this.lastID}');
-	    }
-	
-	);
-  },
-  select: function (callback) {
-	db.all("SELECT * DROM contactos", [], (err, rows) =>{
-		if (err) {
-			throw err;
-		}
-		callback(rows);
-	});
-  },
-};  
+router.post('/', function(req, res, next) {
+  let name = req.body.name;
+  let email = req.body.email;
+  let comment = req.body.comment;
+  let date = new Date(); // @todo falta formatear la fecha
+  let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress; // @todo falta formatear la ip
 
-module.exports = router ;
+  db.insert(name, email, comment, date, ip);
+
+  res.redirect('/');
+});
+
+router.get('/contactos', function(req, res, next) {
+  db.select(function (rows) {
+    console.log(rows);
+  });
+  res.send('ok');
+});
+
+module.exports = router;
