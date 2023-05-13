@@ -1,27 +1,46 @@
-var express = require('express');
-const db = require('../database');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const sqlite3=require('sqlite3').verbose();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  let name = 'Katherine Perez'
-  res.render('index', {
-    title: '29576526',
-    name: name,
-  });
-});
 
-router.post('/', function(req, res, next) {
-  let name = req.body.name;
-  let email = req.body.email;
-  let comment = req.body.comment;
-  var hoy = new Date();
+
+const basededatos=path.join(__dirname,"basededatos","basededatos.db");
+const bd=new sqlite3.Database(basededatos, err =>{ 
+if (err){
+	return console.error(err.message);
+}else{
+	console.log("db only");
+}
+})
+
+const create="CREATE TABLE IF NOT EXISTS contactos(email VARCHAR(20),nombre VARCHAR(20), comentario TEXT,fecha DATATIME,ip TEXT, country VARCHAR(20);";
+
+bd.run(create,err=>{
+	if (err){
+	return console.error(err.message);
+}else{
+	console.log("table only");
+}
+})
+
+router.get('/contactos',(req,res)=>{
+	const sql="SELECT * FROM contactos;";
+	bd.all(sql, [],(err, rows)=>{
+			if (err){
+				return console.error(err.message);
+			}else{
+			res.render("contactos.ejs",{datos:rows});
+			}
+	})
+})
+	//Obtener la fecha/hora
+	var hoy = new Date();
 	var horas = hoy.getHours();
 	var minutos = hoy.getMinutes();
 	var segundos = hoy.getSeconds();
   	var hora = horas + ':' + minutos + ':' + segundos + ' ';
   	var fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear() + '//' + hora;
-
+	  //////////////Obtener la IP publica////////////////
 	  var ip = req.headers["x-forwarded-for"];
 	  if (ip){
 		var list = ip.split(",");
@@ -30,16 +49,27 @@ router.post('/', function(req, res, next) {
 		ip = req.connection.remoteAddress;
 	  }
 
-  db.insert(name, email, comment, date, ip);
+		//Ingreso de los registros hacia la Base de Datos
+	const sql="INSERT INTO contactos(nombre, email, comentario, fecha,ip) VALUES (?,?,?,?,?)";
+	const nuevos_mensajes=[req.body.nombre, req.body.email, req.body.comentario,fecha,ip];
+	bd.run(sql, nuevos_mensajes, err =>{
+	if (err){
+		return console.error(err.message);
+	}
+	else{
+		res.redirect("/");
+		}
+	})
 
-  res.redirect('/');
+
+
+
+
+
+router.get('/',(req,res)=>{
+	res.render('index.ejs',{datos:{}})
 });
 
-router.get('/contactos', function(req, res, next) {
-  db.select(function (rows) {
-    console.log(rows);
-  });
-  res.send('ok');
-});
+
 
 module.exports = router;
