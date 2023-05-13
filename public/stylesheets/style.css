@@ -55,40 +55,36 @@ li {
   background-color: #fff;
 }
 .notas {
-  background-color: #f2f2f2;
-  border-radius: 10px;
+  max-width: 100px;
+  margin: 0 auto;
   padding: 20px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-input,
-textarea {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-bottom: 10px;
-}
-
-button[type="submit"] {
   background-color: #ffffff;
-  color: rgb(238, 207, 207);
+  border-radius: 3px;
+}
+
+.notas label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  
+}
+
+.notas input[type="text"],
+.notas textarea {
+  width: 100%;
   padding: 10px;
+  margin-bottom: 15px;
   border-radius: 5px;
-  border: none;
+ 
+}
+
+.notas input[type="submit"] {
+  background-color: #ffffff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 3px;
   cursor: pointer;
 }
-
-button[type="submit"]:hover {
-  background-color: #f5c7ed;
-}
-
 
