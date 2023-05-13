@@ -30,7 +30,7 @@ module.exports - {
 	);
   },
   select: function (callback) {
-	db.all("SELECT * DROM contactos", [], (err, rows) =>{
+	db.all("SELECT * FROM contactos", [], (err, rows) =>{
 		if (err) {
 			throw err;
 		}

@@ -19,6 +19,7 @@ router.post('/', function(req, res, next) {
   let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress; // @todo falta formatear la ip
 
   logicaDB.insert(name, email, comment, date, ip);
+  
   console.log({ name, email, comment, date, ip});
 
   res.redirect('/');
