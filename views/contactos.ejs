@@ -3,30 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="stylesheets/style.css">
-    <title>Document</title>
-</head>
-<body>
-    <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Comentario</th>
-            <th>Fecha-Hora</th>
-            <th>IP</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% for (const obtener of datos) { %>
-          <tr>
-            <th><%= obtener.name%></th>
-            <td><%= obtener.email%></td>
-            <td><%= obtener.comentario%></td>
-            <td><%= obtener.fecha%></td>
-            <td><%= obtener.ip%></td>
-          </tr>
-          <% } %>
-        </tbody>
-      </table>
-</html>
+    <title>Comentario</title>
+  </head>
+  <body> 
+       
+       <form action="/" method="post">
+          <h3>Registrate</h3>
+          <label for="Nombre">Nombre:</label>
+          <input type="text" name="Nombre" id="Nombre" placeholder="Escribe Tu Nombre" >
+  
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" placeholder="Escribe Tu Correo" >
+          <label for="Mensaje">Mensaje:</label>
+          <textarea name= "Comentario" id="Mensaje" placeholder="Escribe Tu Mensaje"></textarea>
+  
+          <input type="submit" value="Listo">
+  
+  
+  
+  
+       </form>
+  
+       <hr/>
+       <h2> Quiere regresar a las pagina principal has click <a href="/">aquí</a> </h2>
+  </body>
+  </html>
 
