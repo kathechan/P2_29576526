@@ -9,7 +9,7 @@ let db = new sqlite3.Database(__dirname + "/database.db", (err) => {
 console.log("Connected to the Sqlite database.");
 
 db.run(
-	"CREATE TABLE IF NOT EXISTS contactos (id INTERGER PRIMARY KEY AUTO_INCREMENT, name TEXT NOT NULL, email TEXT NOT NULL, comment TEXT NOT NULL, date TEXT NOT NULL, ip TEXT NOT NULL)"
+	"CREATE TABLE IF NOT EXISTS contactos(email VARCHAR(20),nombre VARCHAR(20), comentario TEXT,fecha DATATIME,ip TEXT);"
 );
 });
 
