@@ -1,5 +1,5 @@
 const express = require('express');
-const logicaDB = require('/logicaDB.js');
+const logicaDB = require('./logicaDB');
 const router = express.Router();
 const db = require('/database.db');
 
