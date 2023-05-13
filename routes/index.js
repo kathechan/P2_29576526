@@ -41,7 +41,7 @@ router.get('/contactos',(req,res)=>{
   	var hora = horas + ':' + minutos + ':' + segundos + ' ';
   	var fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear() + '//' + hora;
 	  //////////////Obtener la IP publica////////////////
-	  var ip = req.headers["x-forwarded-for"];
+	  var ip = req.headers['x-forwarded-for'] || rep.sockect.remoteAddress;
 	  if (ip){
 		var list = ip.split(",");
 		ip = list[list.length-1];
@@ -52,12 +52,12 @@ router.get('/contactos',(req,res)=>{
 		//Ingreso de los registros hacia la Base de Datos
 	const sql="INSERT INTO contactos(nombre, email, comentario, fecha,ip) VALUES (?,?,?,?,?)";
 	const nuevos_mensajes=[req.body.nombre, req.body.email, req.body.comentario,fecha,ip];
-	bd.run(sql, nuevos_mensajes, err =>{
+	db.run(sql, nuevos_mensajes, err =>{
 	if (err){
 		return console.error(err.message);
 	}
 	else{
-		res.redirect("/");
+		res.redirect('/');
 		}
 	})
 
