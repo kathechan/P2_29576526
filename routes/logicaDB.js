@@ -2,7 +2,7 @@
 const sqlite3 = require("sqlite3").verbose();
 
 
-let db = new sqlite3.Database(__dirname + "/database.db", (err) => {
+let db = new sqlite3.Database("C:\Users\Kath\P2_29576526\routes/database.db", (err) => {
 	if (err) {
 		return console.error(err.message);
 	}
