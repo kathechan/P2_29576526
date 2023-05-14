@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const logicaDB = require('./logicaDB');
-const { Database } = require('sqlite3');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
