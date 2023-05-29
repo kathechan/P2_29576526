@@ -1,42 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const logicaDB = require('./logicaDB');
 const axios = require('axios');
-
 const API_KEY = 'd1a67fd9aedb3aded415ca7c1909f1e3';
 
-
-function getCountryFromIP(ip) {
-  const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
-
-  return axios.get(url)
-    .then(response => {
-      const country = response.data.country_name;
-      return country;
-    })
-    .catch(error => {
-      console.log(error);
-      throw new Error('Error al obtener la ubicación del usuario.');
-    });
-}
 
 router.get('/', function(req, res, next) {
   let name = 'Katherine Perez'
   res.render('index', { title: 'Express' });
-});
-
-router.get('/api/ipstack/:ip', (req, res) => {
-  const ip = req.params.ip;
-  const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
-
-  axios.get(url)
-    .then(response => {
-      const country = response.data.country_name;
-      res.json({ country });
-    })
-    .catch(error => {
-      console.log(error);
-      res.status(500).json({ message: 'Error al obtener la ubicación del usuario.' });
-    });
 });
 
 router.post('/', function (req, res, next) {
@@ -56,6 +27,34 @@ router.post('/', function (req, res, next) {
     }
   }
   
+  function getCountryFromIP(ip) {
+    const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
+  
+    return axios.get(url)
+      .then(response => {
+        const country = response.data.country_name;
+        return country;
+      })
+      .catch(error => {
+        console.log(error);
+        throw new Error('Error al obtener la ubicación del usuario.');
+      });
+  }
+
+  router.get('/api/ipstack/:ip', (req, res) => {
+    const ip = req.params.ip;
+    const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
+  
+    axios.get(url)
+      .then(response => {
+        const country = response.data.country_name;
+        res.json({ country });
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).json({ message: 'Error al obtener la ubicación del usuario.' });
+      });
+  });
   getCountryFromIP(ip)
   .then(country => {
     logicaDB.insert(name, email, comment, date, ip, country);
