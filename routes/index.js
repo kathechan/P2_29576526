@@ -51,18 +51,13 @@ router.post('/', function (req, res, next) {
   let formattedDate = date.toLocaleDateString("es-ES");
   let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
    ip = formatIP(ip);
-  function formatIP(ip) {
+   function formatIP(ip) {
     const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
-    if (!ipRegex.test(ip)) {
-      throw new Error('Dirección IP inválida');
+    if (ipRegex.test(ip)) {
+      return ip.match(ipRegex)[0];
+    } else {
+      return ip;
     }
-
-    const parts = ip.split('.');
-    const formattedParts = parts.map(part => {
-      return part.padStart(3, '0');
-    });
-    const formattedIP = formattedParts.join('.');
-    return formattedIP;
   }
 
   getCountryFromIP(ip)
