@@ -27,7 +27,6 @@ else{
 }
 });
   
-  
   function getCountryFromIP(ip) {
     const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
   
