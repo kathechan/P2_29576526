@@ -50,6 +50,8 @@ router.post('/', function (req, res, next) {
   let date = new Date(); 
   let formattedDate = date.toLocaleDateString("es-ES");
   let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+   ip = formatIP(ip);
   function formatIP(ip) {
     const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
     if (!ipRegex.test(ip)) {
