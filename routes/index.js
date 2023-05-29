@@ -1,18 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const logicaDB = require('./logicaDB');
-const db = ('./logicaDB');
 const axios = require('axios');
 
-
-
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  let name = 'Katherine Perez'
-  res.render('index', { title: 'Express' });
-});
 const API_KEY = 'd1a67fd9aedb3aded415ca7c1909f1e3';
+
 
 function getCountryFromIP(ip) {
   const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
@@ -27,6 +18,11 @@ function getCountryFromIP(ip) {
       throw new Error('Error al obtener la ubicación del usuario.');
     });
 }
+
+router.get('/', function(req, res, next) {
+  let name = 'Katherine Perez'
+  res.render('index', { title: 'Express' });
+});
 
 router.get('/api/ipstack/:ip', (req, res) => {
   const ip = req.params.ip;
@@ -74,7 +70,7 @@ router.post('/', function (req, res, next) {
 
 
 router.get('/contactos', function(req, res, next) {
-  db.select(function (rows) {
+  logicaDB.select(function (rows) {
     console.log(rows);
   });
   res.send('ok');
