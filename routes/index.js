@@ -1,27 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const logicaDB = require('./logicaDB');
+const db = ('./logicaDB');
 const axios = require('axios');
 
+
+
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  let name = 'Katherine Perez'
+  res.render('index', { title: 'Express' });
+});
 const API_KEY = 'd1a67fd9aedb3aded415ca7c1909f1e3';
 
 function getCountryFromIP(ip) {
   const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
 
   return axios.get(url)
-    .then(response => 
-      const country = response.data.country_name);
+    .then(response => {
+      const country = response.data.country_name;
       return country;
-    }
+    })
     .catch(error => {
       console.log(error);
       throw new Error('Error al obtener la ubicación del usuario.');
     });
-
-router.get('/', function(req, res, next) {
-  let name = 'Katherine Perez'
-  res.render('index', { title: 'Express' });
-});
+}
 
 router.get('/api/ipstack/:ip', (req, res) => {
   const ip = req.params.ip;
@@ -49,10 +54,7 @@ router.post('/', function (req, res, next) {
    function formatIP(ip) {
     const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
     if (ipRegex.test(ip)) {
-      return
-
-javascript
-      ip.match(ipRegex)[0];
+      return ip.match(ipRegex)[0];
     } else {
       return ip;
     }
@@ -70,8 +72,9 @@ javascript
   });
 });
 
- outer.get('/contactos', function(req, res, next) {
-  logicaDB.select(function (rows) {
+
+router.get('/contactos', function(req, res, next) {
+  db.select(function (rows) {
     console.log(rows);
   });
   res.send('ok');
