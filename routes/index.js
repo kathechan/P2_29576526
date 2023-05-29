@@ -59,11 +59,7 @@ router.post('/', function (req, res, next) {
       return ip;
     }
   }
-  if ("geolocation" in navigator) {
-    console.log("El navegador admite la API de geolocalización");
-  } else {
-    console.log("El navegador NO admite la API de geolocalización");
-  }
+  
   getCountryFromIP(ip)
   .then(country => {
     logicaDB.insert(name, email, comment, date, ip, country);
