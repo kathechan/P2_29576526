@@ -65,14 +65,24 @@
 				  <h3>Registrate</h3>
 				  <label for="name">Nombre</label>
 				  <input type="text" name="name" id="name" placeholder="Escribe Tu Nombre" >
-		  
+				  <label for="Venezuela">donde eres</label>
+				  <select name="pais">   
+					  <option  value="Venezuela">Venezuela</option>
+					  <option value="Colombia">Colombia</option>
+					  <option value="Brasil">Brasil</option>
+					  <option value="Argentina">Argentina</option>
+					  <option value="Perú">Perú</option>
+					  <option value="Chile">Chile</option>
+					  <option value="Ecuardor">Ecuardor</option>
+					  <option value="Otro País">Otro País</option>
+				  </select>
 				  <label for="email">Email</label>
 				  <input type="email" name="email" id="email" placeholder="Escribe Tu Correo" >
 				  <label for="comment">Mensaje</label>
 				  <textarea name= "comment" id="comment" placeholder="Escribe Tu Mensaje"></textarea>
-		          <label for="country">Pais</label>
-				  <textarea name= "country" id="country" placeholder="Ingresa el Pais donde resides"></textarea>
-				  
+		
 				  <input type="submit" value="Listo">
+				  <input id ="country "type="hidden" name ="coutry">
+                  <input type="hidden" value="localhost:3000">
 </body>
 </html>
