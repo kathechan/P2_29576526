@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const logicaDB = require('./logicaDB');
+const db = ('./logicaDB')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let name = 'Katherine Perez'
-  res.render('index', {
-    title: 'P2_29576526',
-    name: name,
-  });
+  res.render('index', { title: 'Express' });
 });
 
 router.post('/', function (req, res, next) {
