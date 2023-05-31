@@ -100,3 +100,8 @@ li {
 .notas input[type="submit"]:hover {
   background-color: #006C9E;
 }
+.grecaptha {
+  margin-left: auto;
+  margin-right: auto;
+
+};
