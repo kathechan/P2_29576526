@@ -3,13 +3,24 @@ const router = express.Router();
 const logicaDB = require('./logicaDB');
 const axios = require('axios');
 const API_KEY = 'd1ad1a67fd9aedb3aded415ca7c1909f1e3';
-
+const fetch = require('node-fetch');
 
 router.get('/', function(req, res, next) {
   let name = 'Katherine Perez'
   res.render('index', { title: 'Express' });
 });
 
+router.post('/',(req,res)=>{
+  const SECRET_KEY = "6LcNCFQmAAAAAEu8S6U5iiI0i7lyiEOIA7gOaEMS";
+   const url = 
+ `https://www.google.com/recaptcha/api/siteverify?secret=${process.env["6LcNCFQmAAAAAEu8S6U5iiI0i7lyiEOIA7gOaEMS"]}&response=${req.body["g-recaptcha-response"]}`;
+   fetch(url, {
+     method: "post",
+   })
+     .then((response) => response.json())
+     .then((google_response) => {
+   if (google_response.success == true) {
+ 
 router.post('/', function (req, res, next) {
   let name = req.body.name;
   let email = req.body.email;
@@ -26,6 +37,9 @@ router.post('/', function (req, res, next) {
       return ip;
     }
   }
+})}}
+) 
+});
   function getCountryFromIP(ip) {
     const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
   
@@ -64,7 +78,7 @@ router.post('/', function (req, res, next) {
     console.error(error);
     res.status(500).json({ message: 'Error al obtener la ubicación del usuario.' });
   });
-});
+
 
 
 router.get('/contactos', function(req, res, next) {
