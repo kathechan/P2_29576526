@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',(req,res)=>{
-  const SECRET_KEY = "6LcNCFQmAAAAAEu8S6U5iiI0i7lyiEOIA7gOaEMS";
+  const SECRET_KEY = "6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk";
    const url = 
- `https://www.google.com/recaptcha/api/siteverify?secret=${process.env["6LcNCFQmAAAAAEu8S6U5iiI0i7lyiEOIA7gOaEMS"]}&response=${req.body["g-recaptcha-response"]}`;
+ `https://www.google.com/recaptcha/api/siteverify?secret=${process.env["6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk"]}&response=${req.body["g-recaptcha-response"]}`;
    fetch(url, {
      method: "post",
    })
