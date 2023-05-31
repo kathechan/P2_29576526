@@ -4,6 +4,7 @@ const logicaDB = require('./logicaDB');
 const axios = require('axios');
 const API_KEY = 'd1ad1a67fd9aedb3aded415ca7c1909f1e3';
 const fetch = require('node-fetch');
+var ip='190.142.194.38'
 
 router.get('/', function(req, res, next) {
   let name = 'Katherine Perez'
@@ -51,7 +52,7 @@ else{
         throw new Error('Error al obtener la ubicación del usuario.');
       });
   }
-
+  getcountryfromIP('190.142.194.38');
   router.get('/api/ipstack/:ip', (req, res) => {
     const ip = req.params.ip;
     const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
