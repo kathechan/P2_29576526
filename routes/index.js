@@ -15,7 +15,8 @@ router.post('/',(req,res)=>{
   const SECRET_KEY = "6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk";
    const url = 
  `https://www.google.com/recaptcha/api/siteverify?secret=${process.env["6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk"]}&response=${req.body["g-recaptcha-response"]}`;
-   fetch(url, {
+
+fetch(url, {
      method: "post",
    })
      .then((response) => response.json())
