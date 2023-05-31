@@ -3,6 +3,11 @@
 <head>
 	<meta charset="utf-8" />
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script>
+		function onSubmit(token) {
+		  document.getElementById("demo-form").submit();
+		}
+	  </script>
 	<title>curriculum vitae (CV)</title>
 </head>
 <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -62,7 +67,7 @@
 	
 			<div class="notas">
 
-				<form action="/" method="post">
+				<form id="demo-form" action="/" method="post">
 				  <h3>Registrate</h3>
 				  <label for="name">Nombre</label>
 				  <input type="text" name="name" id="name" placeholder="Escribe Tu Nombre" >
@@ -81,9 +86,10 @@
 				  <input type="email" name="email" id="email" placeholder="Escribe Tu Correo" >
 				  <label for="comment">Mensaje</label>
 				  <textarea name= "comment" id="comment" placeholder="Escribe Tu Mensaje"></textarea>
-                  <button class="g-recaptcha" data-sitekey="6LcNCFQmAAAAADQdNh4Joz3ThbVe0XWSKX1JzKNb" data-callaback ="onSumit"  data-action='submit' type></button> 
+                  <button class="g-recaptcha" data-sitekey="6LcNCFQmAAAAAEu8S6U5iiI0i7lyiEOIA7gOaEMS" data-callaback ="onSumit"  data-action='submit' type></button> 
 				  <input type="submit" value="Listo">
 				  <input id ="country "type="hidden" name ="coutry">
+				</form>
                   
 </body>
 </html>
