@@ -52,7 +52,6 @@ else{
         throw new Error('Error al obtener la ubicación del usuario.');
       });
   }
-  getcountryfromIP('190.142.194.38');
   router.get('/api/ipstack/:ip', (req, res) => {
     const ip = req.params.ip;
     const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
