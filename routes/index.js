@@ -28,17 +28,15 @@ router.post('/', function (req, res, next) {
   let date = new Date(); 
   let formattedDate = date.toLocaleDateString("es-ES");
   let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-   ip = formatIP(ip);
-   function formatIP(ip) {
-    const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
-    if (ipRegex.test(ip)) {
-      return ip.match(ipRegex)[0];
-    } else {
-      return ip;
-    }
-  }
-})}}
-) 
+  if(ip){
+    let ip_ls = ip.split(",");
+    ip = ip_ls[ip_ls.length -1];
+}
+else{
+    console.log("IP no se pudo formatiar");
+}
+})
+}})
 });
   function getCountryFromIP(ip) {
     const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
