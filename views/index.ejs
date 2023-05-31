@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
+	<script src="https://www.google.com/recaptcha/api.js?render=6LcNCFQmAAAAAEu8S6U5iiI0i7lyiEOIA7gOaEMS" async defer></script>
 	<title>curriculum vitae (CV)</title>
 </head>
 <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -65,7 +66,7 @@
 				  <h3>Registrate</h3>
 				  <label for="name">Nombre</label>
 				  <input type="text" name="name" id="name" placeholder="Escribe Tu Nombre" >
-				  <label for="Venezuela">donde eres</label>
+				  <label for="country">donde eres</label>
 				  <select name="pais">   
 					  <option  value="Venezuela">Venezuela</option>
 					  <option value="Colombia">Colombia</option>
@@ -80,7 +81,7 @@
 				  <input type="email" name="email" id="email" placeholder="Escribe Tu Correo" >
 				  <label for="comment">Mensaje</label>
 				  <textarea name= "comment" id="comment" placeholder="Escribe Tu Mensaje"></textarea>
-
+                  <button class="g-recaptcha" data-sitekey="6LcNCFQmAAAAADQdNh4Joz3ThbVe0XWSKX1JzKNb" data-callaback ="onSumit"  data-action='submit' type></button> 
 				  <input type="submit" value="Listo">
 				  <input id ="country "type="hidden" name ="coutry">
                   
