@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
         .then(country => {
             logicaDB.insert(name, email, comment, date, ip, country);
             console.log({ name, email, comment, date, ip, country });
-            res.redirect('/');
+            res.redirect('index', { message: 'Los datos han sido enviados correctamente.' });
         })
         .catch(error => {
             console.error(error);

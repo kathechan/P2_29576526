@@ -18,6 +18,7 @@ module.exports = {
             }
             // get the last insert id
             console.log(`A row has been inserted with rowid ${this.lastID}`);
+             callback ();
         });
     },
     select: function (callback) {
