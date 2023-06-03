@@ -10,16 +10,30 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/',(req,res)=>{
-  const SECRET_KEY = "6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk";
-   const url =`https://www.google.com/recaptcha/api/siteverify?secret=${process.env["6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk"]}&response=${req.body["g-recaptcha-response"]}`;
+const fetch = require("node-fetch");
 
-fetch(url, {
-     method: "post",
-   })
-     .then((response) => response.json())
-     .then((google_response) => {
-   if (google_response.success == true) {
+router.post('/', (req, res) => {
+  const SECRET_KEY = "6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk";
+  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${req.body["g-recaptcha-response"]}`;
+
+  fetch(url, {
+      method: "POST"
+    })
+    .then(response => response.json())
+    .then(google_response => {
+      if (google_response.success == true) {
+        
+        res.send("El desafío de reCAPTCHA se ha completado correctamente");
+      } else {
+        
+        res.send("El desafío de reCAPTCHA no se ha completado correctamente");
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      res.send("Ha ocurrido un error al verificar el desafío de reCAPTCHA");
+    });
+});
  
 router.post('/', function (req, res, next) {
   let name = req.body.name;
@@ -35,8 +49,6 @@ router.post('/', function (req, res, next) {
 else{
     console.log("IP no se pudo formatear");
 }
-})
-}})
 });
   function getCountryFromIP(ip) {
     const API_KEY = 'bbf9610212ee092c996e920fe458f171';
