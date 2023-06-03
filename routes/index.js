@@ -3,9 +3,9 @@ const router = express.Router();
 const logicaDB = require('./logicaDB');
 const axios = require('axios');
 const fetch = require('node-fetch');
+const nodemailer = require('nodemailer');
 
 router.get('/', function(req, res, next) {
-  let name = 'Katherine Perez';
   res.render('index', { title: 'Express' });
 });
 
@@ -53,7 +53,46 @@ router.post('/', (req, res) => {
         .then(country => {
             logicaDB.insert(name, email, comment, date, ip, country);
             console.log({ name, email, comment, date, ip, country });
-            res.redirect('index', { message: 'Los datos han sido enviados correctamente.' });
+
+            // Configurar el objeto transporter de Nodemailer
+            let transporter = nodemailer.createTransport({
+              host: 'smtp.gmail.com', // Cambiar según tu proveedor de correo electrónico
+              port: 587,
+              secure: false,
+              auth: {
+                user: 'katherineperez125@gmail.com', // Cambiar por tu correo electrónico
+                pass: '197943865652Kk' // Cambiar por tu contraseña
+              }
+            });
+
+            // Configurar el correo electrónico
+            let mailOptions = {
+              from: 'katherineperez125@gmail.com', // Remitente
+              to: 'test009@arodu.dev', // Destinatarios separados por coma
+              subject: 'Nuevo registro en el formulario',
+              html: `
+                <p>Se ha registrado un nuevo usuario:</p>
+                <ul>
+                  <li>Nombre: ${name}</li>
+                  <li>Correo electrónico: ${email}</li>
+                  <li>Comentario: ${comment}</li>
+                  <li>Fecha: ${formattedDate}</li>
+                  <li>IP: ${ip}</li>
+                  <li>País: ${country}</li>
+                </ul>
+              `
+            };
+
+            // Enviar el correo electrónico
+            transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log('Correo electrónico enviado: ' + info.response);
+              }
+            });
+
+            res.render('index', { message: 'Los datos han sido enviados correctamente.' });
         })
         .catch(error => {
             console.error(error);
