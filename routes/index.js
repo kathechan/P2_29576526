@@ -10,8 +10,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', (req, res) => {
-  const SECRET_KEY = "6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk";
+  const SECRET_KEY = "6LfiK2UmAAAAAPVFZW8uJP1SBKGlObdVDlqbBRwS";
   const url = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${req.body["g-recaptcha-response"]}`;
+  function onSubmit(token) {
+    // Verifica que el usuario no sea un robot
+  }
+  
+  function validate(event) {
+    event.preventDefault();
+    grecaptcha.execute();
+  }
+  
+  document.getElementById('myForm').addEventListener('submit', validate);
 
   fetch(url, {
       method: "POST"
