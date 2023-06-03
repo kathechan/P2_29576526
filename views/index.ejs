@@ -6,95 +6,86 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 	<title>curriculum vitae (CV)</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
-<link rel='stylesheet' href='/stylesheets/style.css' />
+
 <body>
-
-
 	<div class="xd">
 		<h1 class="xd-h1">Katherine Eikar Perez Roman</h1>
-			<img class="image" src="/images/Katherine.jpeg" title="Katherine">
-			<fieldset>
-				<legend>Perfil Personal</legend>
-				<ul>
-					<li>Documento de Identidad: 29.576.526</li>
-					<li>Edad: 23 años</li>
-					<li>Direccion: Guarico, San juan de los morros, Venezuela</li>
-					<li>Nacionalidad: Venezolana</li>
-				
-				</ul>
-			</fieldset>
+		<img class="image" src="/images/Katherine.jpeg" title="Katherine">
+		<fieldset>
+			<legend>Perfil Personal</legend>
+			<ul>
+				<li>Documento de Identidad: 29.576.526</li>
+				<li>Edad: 23 años</li>
+				<li>Direccion: Guarico, San juan de los morros, Venezuela</li>
+				<li>Nacionalidad: Venezolana</li>
+			</ul>
+		</fieldset>
 
-			<fieldset>
-				<legend>Educación</legend>
-				<ul>
-					<li>Estudios primario: Unidad educativa Mercedes Rojas de Perez</li>
-					<li>Estudios secundarios: Unidad educativa colegio Arquidiocesano "Angel de la guarda"</li>
-					<li>Estudios universitarios: Actualmente cursando 5to semestre de ingenieria informatica</li>
-                </ul>
-			</fieldset>	
+		<fieldset>
+			<legend>Educación</legend>
+			<ul>
+				<li>Estudios primario: Unidad educativa Mercedes Rojas de Perez</li>
+				<li>Estudios secundarios: Unidad educativa colegio Arquidiocesano "Angel de la guarda"</li>
+				<li>Estudios universitarios: Actualmente cursando 5to semestre de ingenieria informatica</li>
+			</ul>
+		</fieldset>	
 
-			<fieldset>
-				<legend>Experiencia laboral</legend>
-				<ul>
-				     <li>Iskalu Market: administrativo, cajera. 2020 - Actualidad</li>
-				</ul>
-			</fieldset>	
+		<fieldset>
+			<legend>Experiencia laboral</legend>
+			<ul>
+				<li>Iskalu Market: administrativo, cajera. 2020 - Actualidad</li>
+			</ul>
+		</fieldset>	
 
-			<fieldset>
-				<legend>Formas de contacto</legend>
-				<ul>
-					<li><a target= "_blank" href=https://www.facebook.com/katherine.perez.58367?mibextid=ZbWKwL/>Facebook</li>a></li>
-					<li><a target= "_blank" href=https://wa.me/584120975410/>WhatsApp<a/></li>
-					<li><a target= "_blank" href=https://www.instagram.com/imkatheriners//>Instagram<a/></li>
-					<li>Correo electronico: katherineperez125@gmail.com</li>
-				</ul>
-			</fieldset>
-			<fieldset>
-				<legend>Habilidades</legend>
-				<ul>
-					<li>Dominio del ingles fluido (embustera)</li>
-					<li>Proactiva</li>
-					<li>Excelente bajo presión</li>
-					<li>Eficaz, eficiente y veloz a la hora de realizar tareas</li>
-					<li>Aprendiendo a programar en html, css, java y C++</li>
-					
-				</ul>
-			</fieldset>
+		<fieldset>
+			<legend>Formas de contacto</legend>
+			<ul>
+				<li><a target="_blank" href="https://www.facebook.com/katherine.perez.58367?mibextid=ZbWKwL/">Facebook</a></li>
+				<li><a target="_blank" href="https://wa.me/584120975410/">WhatsApp</a></li>
+				<li><a target="_blank" href="https://www.instagram.com/imkatheriners/">Instagram</a></li>
+				<li>Correo electrónico: katherineperez125@gmail.com</li>
+			</ul>
+		</fieldset>
+
+		<fieldset>
+			<legend>Habilidades</legend>
+			<ul>
+				<li>Dominio del inglés fluido (embustera)</li>
+				<li>Proactiva</li>
+				<li>Excelente bajo presión</li>
+				<li>Eficaz, eficiente y veloz a la hora de realizar tareas</li>
+				<li>Aprendiendo a programar en HTML, CSS, Java y C++</li>
+			</ul>
+		</fieldset>
 	</div>
 	
-	    <div class="notas">
-
-			<h1>Contacto</h1>
-           <form id="myForm" method="POST" action="/">
-           <div class="form-group">
-           <label for="name">Nombre:</label>
-          <input type="text" class="form-control" id="name" name="name">
-          </div>
-          <div class="form-group">
-          <label for="email">Correo electrónico:</label>
-          <input type="email" class="form-control" id="email" name="email">
-          </div>
-          <div class="form-group">
-           <label for="comment">Comentario:</label>
-          <textarea class="form-control" id="comment" name="comment"></textarea>
-       </div>
-       <div class="g-recaptcha" data-sitekey="6LfiK2UmAAAAAPvK3RprmrSBWwSqK7fwT5QgT3Di"></div>
-       <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>  
-				<script>
-					function onSubmit(token) {
-					  document.getElementById("myForm").submit();
-					}
-					function validate(event) {
-                     event.preventDefault();
-                     grecaptcha.execute('6LfiK2UmAAAAAPvK3RprmrSBWwSqK7fwT5QgT3Di', {action: 'submit'}).then(function(token) {
-                     document.getElementById("myForm").submit();
-					 });
-					}
-
-                  document.getElementById('myForm').addEventListener('submit', validate);
-				  </script>
-			</div> 
+	<div class="notas">
+		<h1>Contacto</h1>
+		<form id="myForm" method="POST" action="/">
+			<div class="form-group">
+				<label for="name">Nombre:</label>
+				<input type="text" class="form-control" id="name" name="name">
+			</div>
+			<div class="form-group">
+				<label for="email">Correo electrónico:</label>
+				<input type="email" class="form-control" id="email" name="email">
+			</div>
+			<div class="form-group">
+				<label for="comment">Comentario:</label>
+				<textarea class="form-control" id="comment" name="comment"></textarea>
+			</div>
+			<div class="g-recaptcha" data-sitekey="6LfiK2UmAAAAAPvK3RprmrSBWwSqK7fwT5QgT3Di"></div>
+			<button type="button" class="btn btn-primary" id="submitButton">Enviar</button>
+		</form>
+		<script>
+			document.getElementById('submitButton').addEventListener('click', function() {
+				grecaptcha.execute('6LfiK2UmAAAAAPvK3RprmrSBWwSqK7fwT5QgT3Di', { action: 'submit' }).then(function(token) {
+					document.getElementById('myForm').submit();
+				});
+			});
+		</script>
+	</div>
 </body>
 </html>
