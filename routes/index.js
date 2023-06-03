@@ -12,17 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/', (req, res) => {
   const SECRET_KEY = "6LfiK2UmAAAAAPVFZW8uJP1SBKGlObdVDlqbBRwS";
   const url = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${req.body["g-recaptcha-response"]}`;
-  function onSubmit(token) {
-    // Verifica que el usuario no sea un robot
-  }
   
-  function validate(event) {
-    event.preventDefault();
-    grecaptcha.execute();
-  }
-  
-  document.getElementById('myForm').addEventListener('submit', validate);
-
   fetch(url, {
       method: "POST"
     })
@@ -70,12 +60,12 @@ router.post('/', (req, res) => {
             res.status(500).json({ message: 'Error al obtener la ubicación del usuario.' });
         });
       } else {
-        res.send("El desafío de reCAPTCHA no se ha completado correctamente");
+        res.status(400).send("El desafío de reCAPTCHA no se ha completado correctamente");
       }
     })
     .catch(error => {
       console.error(error);
-      res.send("Ha ocurrido un error al verificar el desafío de reCAPTCHA");
+      res.status(500).send("Ha ocurrido un error al verificar el desafío de reCAPTCHA");
     });
 });
  
