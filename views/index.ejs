@@ -71,7 +71,7 @@
 				<form id="demo-form" action="/" method="post">
 				  <h3>Registrate</h3>
 				  <label for="name">Nombre</label>
-				  <input type="text" name="name" id="name" placeholder="Escribe Tu Nombre" >
+				  <input type="text" name="name" id="name" placeholder="Escribe Tu Nombre" required>
 				  <label for="country">donde eres</label>
 				  <select name="pais">   
 					  <option  value="Venezuela">Venezuela</option>
@@ -84,15 +84,11 @@
 					  <option value="Otro País">Otro País</option>
 				  </select>
 				  <label for="email">Email</label>
-				  <input type="email" name="email" id="email" placeholder="Escribe Tu Correo" >
+				  <input type="email" name="email" id="email" placeholder="Escribe Tu Correo" required>
 				  <label for="comment">Mensaje</label>
-				  <textarea name= "comment" id="comment" placeholder="Escribe Tu Mensaje"></textarea>
-                  <input type="submit" name="submit" value="submit">
-				  <button class="g-recaptcha custom-submit-button" 
-                    data-sitekey="6LeHRlQmAAAAAA2JSmw29nRgbWVVjjG8mb2TIbRc" 
-                    data-callback="onSubmit" 
-                    data-action="submit">Verifique si es humano</button>
-				  
+				  <textarea name= "comment" id="comment" placeholder="Escribe Tu Mensaje" required></textarea>
+				  <div class="g-recaptcha" data-sitekey="6LeHRlQmAAAAAA2JSmw29nRgbWVVjjG8mb2TIbRc" data-callback="onSubmit" data-size="invisible"></div>
+				  <input type="submit" name="submit" value="Enviar">
 			
 				
 				</form>     
