@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const logicaDB = require('./logicaDB');
 const axios = require('axios');
-const API_KEY = 'd1ad1a67fd9aedb3aded415ca7c1909f1e3';
 const fetch = require('node-fetch');
 var ip='190.142.194.38'
 
@@ -13,8 +12,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/',(req,res)=>{
   const SECRET_KEY = "6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk";
-   const url = 
- `https://www.google.com/recaptcha/api/siteverify?secret=${process.env["6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk"]}&response=${req.body["g-recaptcha-response"]}`;
+   const url =`https://www.google.com/recaptcha/api/siteverify?secret=${process.env["6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk"]}&response=${req.body["g-recaptcha-response"]}`;
 
 fetch(url, {
      method: "post",
@@ -35,16 +33,18 @@ router.post('/', function (req, res, next) {
     ip = ip_ls[ip_ls.length -1];
 }
 else{
-    console.log("IP no se pudo formatiar");
+    console.log("IP no se pudo formatear");
 }
 })
 }})
 });
   function getCountryFromIP(ip) {
+    const API_KEY = 'bbf9610212ee092c996e920fe458f171';
     const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
   
     return axios.get(url)
       .then(response => {
+        const data = response.data;
         const country = response.data.country_name;
         return country;
       })
@@ -53,20 +53,7 @@ else{
         throw new Error('Error al obtener la ubicación del usuario.');
       });
   }
-  router.get('/api/ipstack/:ip', (req, res) => {
-    const ip = req.params.ip;
-    const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
   
-    axios.get(url)
-      .then(response => {
-        const country = response.data.country_name;
-        res.json({ country });
-      })
-      .catch(error => {
-        console.log(error);
-        res.status(500).json({ message: 'Error al obtener la ubicación del usuario.' });
-      });
-  });
   getCountryFromIP(ip)
   .then(country => {
     logicaDB.insert(name, email, comment, date, ip, country);
@@ -77,7 +64,6 @@ else{
     console.error(error);
     res.status(500).json({ message: 'Error al obtener la ubicación del usuario.' });
   });
-
 
 
 router.get('/contactos', function(req, res, next) {
