@@ -3,14 +3,12 @@ const router = express.Router();
 const logicaDB = require('./logicaDB');
 const axios = require('axios');
 const fetch = require('node-fetch');
-var ip='190.142.194.38'
+
 
 router.get('/', function(req, res, next) {
   let name = 'Katherine Perez'
   res.render('index', { title: 'Express' });
 });
-
-const fetch = require("node-fetch");
 
 router.post('/', (req, res) => {
   const SECRET_KEY = "6LeHRlQmAAAAALSMhb-lNJEHZjuHMIe_2OIVnYXk";
@@ -49,7 +47,6 @@ router.post('/', function (req, res, next) {
 else{
     console.log("IP no se pudo formatear");
 }
-});
   function getCountryFromIP(ip) {
     const API_KEY = 'bbf9610212ee092c996e920fe458f171';
     const url = `http://api.ipstack.com/${ip}?access_key=${API_KEY}`;
@@ -63,7 +60,8 @@ else{
       .catch(error => {
         console.log(error);
         throw new Error('Error al obtener la ubicación del usuario.');
-      });
+      
+    });
   }
   
   getCountryFromIP(ip)
@@ -76,7 +74,7 @@ else{
     console.error(error);
     res.status(500).json({ message: 'Error al obtener la ubicación del usuario.' });
   });
-
+});
 
 router.get('/contactos', function(req, res, next) {
   logicaDB.select(function (rows) {
