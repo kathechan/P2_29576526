@@ -36,15 +36,6 @@ app.post('/', (req, res) => {
     }
   });
 });
-const db = require('./logicaDB');
-
-db.serialize(() => {
-  console.log('Connected to the SQLite database.');
-
-  app.listen(3000, () => {
-    console.log('Servidor iniciado en el puerto 3000.');
-  });
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
