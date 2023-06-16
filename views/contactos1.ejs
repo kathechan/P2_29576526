@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Su contacto del formulario</title>
+</head>
+<body>
+    <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Comentario</th>
+            <th>Fecha-Hora</th>
+            <th>IP</th>
+            <th>pais</th>
+            <th>country</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% registros.forEach(function(registro) { %>
+          <tr>
+            <th><%= obtener.name%></th>
+            <td><%= obtener.email%></td>
+            <td><%= obtener.comentario%></td>
+            <td><%= obtener.fecha%></td>
+            <td><%= obtener.ip%></td>
+            <td><%= obtener.pais%</td>
+            <td><%= obtener.country%></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+</html>

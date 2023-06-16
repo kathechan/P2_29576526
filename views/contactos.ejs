@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-    <link rel="stylesheet" href="stylesheets/style.css">
-    
-    <title>Comentario</title>
-  </head>
-  <body> 
-   <body> 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comentario</title>
+  <link rel="stylesheet" href="/stylesheets/contacto.css">
+</head>
+<body> 
+  <div class="notas">
+    <h1>Contacto</h1>
+    <form id="myForm" method="POST" action="/">
+      <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="comment">Comentario:</label>
+        <textarea class="form-control" id="comment" name="comment" required></textarea>
+      </div>
+      <div class="g-recaptcha" data-sitekey="6LfiK2UmAAAAAPvK3RprmrSBWwSqK7fwT5QgT3Di"></div>
+      <button type="submit" class="btn btn-primary" id="submitButton">Enviar</button>
+    </form>
+    <div id="message"></div>
+    <script>
+      document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        grecaptcha.execute('6LfiK2UmAAAAAPvK3RprmrSBWwSqK7fwT5QgT3Di', { action: 'submit' }).then(function(token) {
+          document.getElementById('myForm').submit();
+        });
+      });
 
-     <div class="notas">
-
-       <form action="/" method="post">
-         <h3>Registrate</h3>
-         <label for="Nombre">Nombre:</label>
-         <input type="text" name="Nombre" id="Nombre" placeholder="Escribe Tu Nombre" >
- 
-         <label for="email">Email:</label>
-         <input type="email" name="email" id="email" placeholder="Escribe Tu Correo" >
-         <label for="Mensaje">Mensaje:</label>
-         <textarea name= "Comentario" id="Mensaje" placeholder="Escribe Tu Mensaje"></textarea>
- 
-         <input type="submit" value="Listo">
- 
-        </form>
-        <hr/>
-        <h2> Quiere regresar a las pagina principal has click <a href="/">aquí</a> </h2>
-    </div>
-  
-   </body>
-  </html>
-
+      function onSubmit(token) {
+        document.getElementById("message").innerHTML = "El formulario se ha enviado correctamente.";
+      }
+    </script>
+    <nav>
+			<ul>
+			  <li><a href="/">Inicio</a></li>
+			</ul>
+		  </nav>
+   
+  </div>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfiK2UmAAAAAPvK3RprmrSBWwSqK7fwT5QgT3Di"></script>
+</body>
+</html>
