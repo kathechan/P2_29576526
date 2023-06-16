@@ -36,7 +36,7 @@ app.post('/', (req, res) => {
     }
   });
 });
-const logicaDB = require('./logicaDB');
+const db = require('./logicaDB');
 
 db.serialize(() => {
   console.log('Connected to the SQLite database.');
