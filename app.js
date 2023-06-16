@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-const logicaDB = require('./logicaDB');
+const db = require('./contactos');
 
 app.post('/', (req, res) => {
   const name = req.body.name;
@@ -34,6 +34,15 @@ app.post('/', (req, res) => {
     } else {
       res.send('Comentario enviado correctamente.');
     }
+  });
+});
+const db = require('./logicaDB');
+
+db.serialize(() => {
+  console.log('Connected to the SQLite database.');
+
+  app.listen(3000, () => {
+    console.log('Servidor iniciado en el puerto 3000.');
   });
 });
 
