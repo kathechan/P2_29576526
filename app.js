@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-const db = require('./contactos');
+const logicaDB = require('./logicaDB');
 
 app.post('/', (req, res) => {
   const name = req.body.name;
@@ -36,9 +36,8 @@ app.post('/', (req, res) => {
     }
   });
 });
-const db = require('./logicaDB');
 
-db.serialize(() => {
+logicaDB.db.serialize(() => {
   console.log('Connected to the SQLite database.');
 
   app.listen(3000, () => {

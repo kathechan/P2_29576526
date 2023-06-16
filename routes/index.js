@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const logicaDB = require('./logicaDB');
 const axios = require('axios');
-const fetch = require('node-fetch');
 const nodemailer = require('nodemailer');
 
 router.get('/', function(req, res, next) {
@@ -44,8 +43,7 @@ router.post('/', (req, res) => {
               })
               .catch(error => {
                 console.log(error);
-                throw new Error('Error al obtener la ubicación del usuario.');
-              
+                return Promise.reject('Error al obtener la ubicación del usuario.');
             });
         }
         
@@ -60,15 +58,15 @@ router.post('/', (req, res) => {
               port: 587,
               secure: false,
               auth: {
-                user: 'katherineperez125@gmail.com', // Cambiar por tu correo electrónico
-                pass: '197943865652Kk' // Cambiar por tu contraseña
+                user: 'katherineperez125@gmail.com', // 
+                pass: '197943865652' // 
               }
             });
 
             // Configurar el correo electrónico
             let mailOptions = {
-              from: 'katherineperez125@gmail.com', // Remitente
-              to: 'test009@arodu.dev', // Destinatarios separados por coma
+              from: 'katherineperez125@gmail.com', // 
+              to: 'test009@arodu.dev', //
               subject: 'Nuevo registro en el formulario',
               html: `
                 <p>Se ha registrado un nuevo usuario:</p>
@@ -77,7 +75,7 @@ router.post('/', (req, res) => {
                   <li>Correo electrónico: ${email}</li>
                   <li>Comentario: ${comment}</li>
                   <li>Fecha: ${formattedDate}</li>
-                  <li>IP: ${ip}</li>
+                  <li>IP: ${ip}</</li>
                   <li>País: ${country}</li>
                 </ul>
               `
@@ -87,12 +85,12 @@ router.post('/', (req, res) => {
             transporter.sendMail(mailOptions, (error, info) => {
               if (error) {
                 console.log(error);
+                res.status(500).send("Ha ocurrido un error al enviar el correo electrónico");
               } else {
                 console.log('Correo electrónico enviado: ' + info.response);
+                res.render('index', { message: 'Los datos han sido enviados correctamente.' });
               }
             });
-
-            res.render('index', { message: 'Los datos han sido enviados correctamente.' });
         })
         .catch(error => {
             console.error(error);
