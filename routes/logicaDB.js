@@ -11,14 +11,14 @@ let db = new sqlite3.Database(':memory:', (err) => {
 
 
 module.exports = {
-    insert: function (name, email, comment, date, ip) {
+    insert: function (name, email, comment, date, ip, country, callback) {
         db.run("INSERT INTO contactos (name, email, comment, date, ip, country) VALUES (?, ?, ?, ?, ?, ?)", [name, email, comment, date, ip, country], function (err) {
             if (err) {
-                return console.log(err.message);
+                return callback(err);
             }
             // get the last insert id
             console.log(`A row has been inserted with rowid ${this.lastID}`);
-             callback ();
+             callback (null);
         });
     },
     select: function (callback) {
