@@ -17,33 +17,6 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-const logicaDB = require('./logicaDB');
-
-app.post('/', (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const comment = req.body.comment;
-  const date = new Date().toISOString();
-  const ip = req.connection.remoteAddress;
-  const country = getCountryFromIp(ip); // función que devuelve el país correspondiente a una dirección IP
-
-  logicaDB.insert(name, email, comment, date, ip, country, function (err) {
-    if (err) {
-      console.log(err);
-      res.send('Error al enviar el comentario.');
-    } else {
-      res.send('Comentario enviado correctamente.');
-    }
-  });
-});
-
-logicaDB.db.serialize(() => {
-  console.log('Connected to the SQLite database.');
-
-  app.listen(3000, () => {
-    console.log('Servidor iniciado en el puerto 3000.');
-  });
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
